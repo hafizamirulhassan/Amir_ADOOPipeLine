@@ -119,12 +119,21 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>${maven.surefire.version}</version>
 					<configuration>
-						<includes>
-							<include>**/TestNG_Class.java</include>
-						</includes>
-						<parallel>methods</parallel>
-						<threadCount>4</threadCount>
-						<useUnlimitedThreads>true</useUnlimitedThreads>
+
+
+						<!-- <suiteXmlFiles>
+                            <suiteXmlFile>${suiteXml}/</suiteXmlFile>
+                        </suiteXmlFiles> -->
+
+						<suiteXmlFiles>
+							<suiteXmlFile>ADO_SamplePipeline\testng.xml</suiteXmlFile>
+						</suiteXmlFiles>
+
+						<!-- Surefire plugin workaround uses the following 3 parameters. We
+                            need to add those at Jenkins Job to suppress sure-fire errors. -->
+						<forkCount>0</forkCount>
+						<useSystemClassLoader>false</useSystemClassLoader>
+						<argLine>-Xmx1024m</argLine>
 					</configuration>
 				</plugin>
 				<!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
